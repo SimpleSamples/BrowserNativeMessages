@@ -1,0 +1,25 @@
+{
+
+  "description": "Sample Browser Native Messages",
+  "manifest_version": 2,
+  "name": "Sample Browser Native Messages",
+  "version": "1.0",
+
+  "applications": {
+    "gecko": {
+      "id": "{C7AFA86A-D725-487A-B955-94F788CA3209}",
+      "strict_min_version": "50.0"
+    }
+  },
+
+  "background": {
+    "scripts": [ "BrowserNativeMessages.js" ]
+  },
+
+  "browser_action": {
+    "default_icon": "message.svg"
+  },
+
+  "permissions": [ "nativeMessaging", "activeTab", "tabs" ]
+
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Sample Browser Native Messages",
+  "description": "Sample Browser Native Messages",
+  "path": "G:\\Sam\\Documents\\Source\\Repos\\BrowserNativeMessages\\BrowserNativeMessages\\bin\\Debug\\BrowserNativeMessages.exe",
+  "type": "stdio",
+  "allowed_extensions": [ "{C7AFA86A-D725-487A-B955-94F788CA3209}" ]
+}
