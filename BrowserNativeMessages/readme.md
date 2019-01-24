@@ -1,1 +1,1 @@
-This is a simple sample of how to use Native Messaging in a browser extension when the host is C#. This is a Viusal Studio solution/project that also has the corresponing manifest and JavaScript. See the following for the sample I used.
+This is a simple sample of how to use Native Messaging in a browser extension when the host uses C#. This is a Viusal Studio solution/project that also has the corresponing manifest and JavaScript. See the following for the sample I used.
