@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.IO;
 using System.Text;
 
@@ -12,18 +14,15 @@ namespace BrowserNativeMessages
 
         static void Main(string[] args)
         {
-            byte[] buff = Encoding.UTF8.GetBytes("Begin Browser Native Messages Sample");
-            stderr.Write(buff, 0, buff.Length);
-            stderr.Flush();
-            string JoMessage = GetMessage();
+            JObject JoMessage = GetMessage();
             while (JoMessage != null)
             {
-                Console.WriteLine("Received " + JoMessage);
+                SendMessage(JoMessage.ToString());
                 JoMessage = GetMessage();
             }
         }
 
-        static string GetMessage()
+        static JObject GetMessage()
         {
             int len;
             byte[] buff = new byte[4];
@@ -33,7 +32,19 @@ namespace BrowserNativeMessages
             buff = new byte[len];
             if (stdin.Read(buff, 0, len) != len)
                 return null;
-            return Encoding.UTF8.GetString(buff);
+            string buffer = Encoding.UTF8.GetString(buff);
+            return (JObject)JsonConvert.DeserializeObject<JObject>(buffer);
+        }
+
+        static void SendMessage(JToken data)
+        {
+            var json = new JObject();
+            json["received"] = data;
+            string EncodedMessage = json.ToString(Formatting.None);
+            byte[] buff = Encoding.UTF8.GetBytes(EncodedMessage);
+            stdout.Write(BitConverter.GetBytes(buff.Length), 0, 4);
+            stdout.Write(buff, 0, buff.Length);
+            stdout.Flush();
         }
     }
 }
